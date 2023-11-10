@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PastriesComponent } from './pastries/pastries.component';
 import { PastryDetailsComponent } from './pastry-details/pastry-details.component';
 import { SearchComponent } from './search/search.component';
+import { BorderCardDirective } from './border-card.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     PastriesComponent,
     PastryDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    BorderCardDirective
   ],
   imports: [
     BrowserModule,

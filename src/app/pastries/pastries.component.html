@@ -1,7 +1,7 @@
 <h1>{{titlePage}}</h1> 
 <app-search (searchString)="setPastries($event)"></app-search>
 <ul *ngIf="pastries" class="list-inline">
-    <li class="list-inline-item" *ngFor="let pastry of pastries">
+    <li class="list-inline-item" *ngFor="let pastry of pastries" appBorderCard="red">
         <p>Patisserie</p>
         <span class="badge badge-info">{{ pastry.id }}</span> {{ pastry.name }} - {{pastry.quantity}}
         <span *ngIf="pastry.like"> - {{pastry.like}} -</span>
