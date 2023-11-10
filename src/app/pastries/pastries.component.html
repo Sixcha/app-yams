@@ -1,0 +1,14 @@
+<h1>{{titlePage}}</h1> 
+<app-search (searchString)="setPastries($event)"></app-search>
+<ul *ngIf="pastries" class="list-inline">
+    <li class="list-inline-item" *ngFor="let pastry of pastries">
+        <p>Patisserie</p>
+        <span class="badge badge-info">{{ pastry.id }}</span> {{ pastry.name }} - {{pastry.quantity}}
+        <span *ngIf="pastry.like"> - {{pastry.like}} -</span>
+        <span *ngFor="let tag of pastry.tags">{{tag}} </span>
+        <button (click)="onSelect(pastry)">Selectionner</button>
+    </li>
+</ul>
+<div class="col-sm-4 video" *ngIf="selectedPastry">
+    <app-pastry-details [pastryId]="selectedPastry" ></app-pastry-details>
+</div>

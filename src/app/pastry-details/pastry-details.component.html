@@ -1,0 +1,6 @@
+<p>{{pastry.ref}}</p>
+<p>{{pastry.name}}</p>
+<h2>Liste des Ingredients</h2>
+<div *ngIf="ingredients">
+    <p *ngFor="let ingredient of ingredients">{{ingredient}}</p>
+</div>
