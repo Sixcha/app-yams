@@ -1,4 +1,14 @@
-<h1>{{titlePage}}</h1> 
+<h1>{{titlePage}}</h1>
+<form *ngIf="!loggedIn">
+    <label for="email">Email</label>
+    <input type="text" id="email" [(ngModel)]="email" name="email" value="duck@duckduck.com"/>
+    <label for="password">Password</label>
+    <input type="text" id="password" [(ngModel)]="password" name="password"/>
+    <button (click)="logIn(email,password)">Log In</button>
+  </form>
+  <div *ngIf="loggedIn">
+    <button (click)="logOut()">Logout</button>
+  </div> 
 <app-search (searchString)="setPastries($event)"></app-search>
 <ul *ngIf="pastries" class="list-inline">
     <li class="list-inline-item" *ngFor="let pastry of pastries" appBorderCard="red">

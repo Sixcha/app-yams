@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 
 import { Pastry } from '../pastry';
 import { PastryService } from '../pastry.service';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,12 +12,19 @@ import { PastryService } from '../pastry.service';
   styleUrls: ['./pastries.component.css']
 })
 export class PastriesComponent implements OnInit {
+
+  
   titlePage: string = "Page principale : liste des pâtisseries à gagner";
   pastries: Pastry[]
   selectedPastry:string
   searchedPastries: Pastry[]
 
-  constructor(private service:PastryService){
+  
+  loggedIn:boolean=false
+  email:string
+  password:string
+
+  constructor(private service:PastryService, private auth:AuthService, private router: Router){
 
   }
 
@@ -29,5 +38,17 @@ export class PastriesComponent implements OnInit {
 
   setPastries(text:string){
     this.pastries=this.service.getSearchedPastry(text)
+  }
+
+  logIn(email:string, password:string){
+    this.loggedIn=this.auth.auth(email,password)
+    if (this.loggedIn) {
+      this.router.navigate(['/dashboard']);
+  }
+}
+
+  logOut(){
+    this.auth.logout()
+    this.loggedIn=false
   }
 }
