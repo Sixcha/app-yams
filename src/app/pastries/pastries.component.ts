@@ -18,11 +18,16 @@ export class PastriesComponent implements OnInit {
   pastries: Pastry[]
   selectedPastry:string
   searchedPastries: Pastry[]
+  finalPastries: Pastry[]
 
   
   loggedIn:boolean=false
   email:string
   password:string
+
+  itemsPerPage = 2;
+  current = 1;
+  totalItems: number;
 
   constructor(private service:PastryService, private auth:AuthService, private router: Router){
 
@@ -30,6 +35,8 @@ export class PastriesComponent implements OnInit {
 
   ngOnInit(): void {
       this.pastries=this.service.getPastries()
+    this.setFinalPastries()
+
   }
 
   onSelect(pastry:Pastry){
@@ -38,6 +45,20 @@ export class PastriesComponent implements OnInit {
 
   setPastries(text:string){
     this.pastries=this.service.getSearchedPastry(text)
+    this.setFinalPastries()
+  }
+
+  setFinalPastries(){
+    this.totalItems = this.pastries.length;
+    const start = (this.current - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    this.finalPastries = this.pastries.slice(start, end);
+  }
+
+  onPageChange(page: number) {
+    console.log(page)
+    this.current = page;
+    this.setFinalPastries()
   }
 
   logIn(email:string, password:string){

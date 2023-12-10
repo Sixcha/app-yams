@@ -11,6 +11,7 @@ import { BorderCardDirective } from './border-card.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GuardService } from './guard.service';
 import { AppRoutingModule } from './app-routing.module';
+import { PaginateComponent } from './paginate/paginate.component';
 
 
 
@@ -21,7 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
     PastryDetailsComponent,
     SearchComponent,
     BorderCardDirective,
-    DashboardComponent
+    DashboardComponent,
+    PaginateComponent
   ],
   imports: [
     BrowserModule,
