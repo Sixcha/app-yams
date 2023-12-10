@@ -13,6 +13,9 @@ import { GuardService } from './guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { PaginateComponent } from './paginate/paginate.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 @NgModule({
@@ -28,7 +31,7 @@ import { PaginateComponent } from './paginate/paginate.component';
   imports: [
     BrowserModule,
     FormsModule,
-    
+    BrowserAnimationsModule,
     AppRoutingModule
   ],
   exports:[],

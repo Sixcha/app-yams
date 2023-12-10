@@ -5,11 +5,33 @@ import { PastryService } from '../pastry.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+
 
 @Component({
   selector: 'app-pastries',
   templateUrl: './pastries.component.html',
-  styleUrls: ['./pastries.component.css']
+  styleUrls: ['./pastries.component.css'],
+  animations: [
+    trigger('change', [
+      state('open', style({
+        boxShadow: '10px 5px 5px black',
+        opacity: 1,
+    })),
+      state('close', style({
+        boxShadow: 'none',
+        opacity: 0.25,
+    })),
+      transition('open <=> close', [animate('0.5s')])
+    ])
+  ]
 })
 export class PastriesComponent implements OnInit {
 
@@ -29,6 +51,8 @@ export class PastriesComponent implements OnInit {
   current = 1;
   totalItems: number;
 
+  animation= 'close';
+
   constructor(private service:PastryService, private auth:AuthService, private router: Router){
 
   }
@@ -41,6 +65,7 @@ export class PastriesComponent implements OnInit {
 
   onSelect(pastry:Pastry){
     this.selectedPastry= pastry.id
+    this.animation = (this.animation === 'open') ? 'closed' : 'open';
   }
 
   setPastries(text:string){
